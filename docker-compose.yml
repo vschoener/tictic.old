@@ -1,0 +1,34 @@
+version: "3.6"
+
+services:
+  app:
+    container_name: ${CONTAINER_PREFIX}.app
+    build: .
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - tictic
+    ports:
+      - ${BIND_EXPRESS_PORT}:${EXPRESS_PORT}
+
+  postgres:
+    container_name: ${CONTAINER_PREFIX}.postgres
+    image: postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=tictic
+    volumes:
+      - postgres:/data/db
+    ports:
+      - ${BIND_DB_PORT}:5432
+    networks:
+      - tictic
+
+volumes:
+  postgres: {}
+
+networks:
+  tictic:
+    name: tictic
