@@ -3,10 +3,9 @@ version: "3.6"
 services:
   app:
     container_name: ${CONTAINER_PREFIX}.app
-    build: .
+    build: docker/app
     volumes:
       - .:/app
-      - /app/node_modules
     networks:
       - tictic
     ports:

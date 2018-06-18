@@ -2,7 +2,7 @@
 
 import { Router } from 'express';
 import currentApiRouter from './v1';
-import passport from './passport';
+// import passport from './passport';
 
 const router = Router();
 const passportOption = {

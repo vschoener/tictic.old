@@ -1,6 +1,6 @@
-all: down build
+all: clean down docker-build
 
-build:
+docker-build:
 	docker-compose build
 
 start:
@@ -13,10 +13,10 @@ down:
 	docker-compose down
 
 clean:
-	docker-compose run --rm app rm -rf nodes_modules logs flow-typed dist
+	rm -rf nodes_modules logs build
 
 install:
-	docker-compose run --rm app npm install
+	npm install
 	@make build-app
 
 build-app:
@@ -41,3 +41,9 @@ testApp:
 installDep:
 	npm install ${deps}
 	docker-compose run --rm app npm install ${deps}
+
+migrate-up:
+	docker-compose run --rm app npm run db-migrate up
+
+migrate-down:
+	docker-compose run --rm app npm run db-migrate down
