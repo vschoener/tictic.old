@@ -2,7 +2,9 @@ import {
   Model,
   Table,
   Column,
-  Unique } from "sequelize-typescript";
+  Unique,
+  CreatedAt,
+  UpdatedAt } from "sequelize-typescript";
 
 @Table({
   timestamps: true
@@ -20,4 +22,10 @@ export default class User extends Model<User> {
 
   @Column
   password: string;
+
+  @CreatedAt
+  createdAt: Date;
+
+  @UpdatedAt
+  updatedAt: Date;
 }

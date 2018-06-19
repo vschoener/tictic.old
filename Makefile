@@ -47,3 +47,6 @@ migrate-up:
 
 migrate-down:
 	docker-compose run --rm app npm run db-migrate down
+
+shell:
+	docker-compose run --rm app sh
